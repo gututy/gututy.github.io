@@ -1,9 +1,7 @@
 header:
-  - titles:
-      主页
+  - titles: 主页
     url: /index.html
-  - titles:
-      笔记
+  - titles: 笔记
     url: 
   - titles:
       # @start locale config
