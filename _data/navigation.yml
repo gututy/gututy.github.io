@@ -55,14 +55,13 @@ docs-zh:
   - title:      Start
     children:
       - title:  Quick Start
-        url:    /docs/zh/quick-start
-      - title:  Structure
-        url:    /docs/zh/structure
+        url:    /docs/zh/1.1-quick-start
+     
       
   - title:      Customization
     children:
       - title:  Configuration
-        url:    /docs/zh/configuration
+        url:    /docs/zh/2.1-configuration
       - title:  Navigation
-        url:    /docs/zh/navigation
+        url:    /docs/zh/2.2-navigation
       
