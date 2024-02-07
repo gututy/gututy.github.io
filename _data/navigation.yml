@@ -2,7 +2,7 @@ header:
   - titles: 主页
     url: /index.html
   - titles: 笔记
-    url: 
+    url: /note.html
   - titles:
       # @start locale config
       en      : &EN       Archive
