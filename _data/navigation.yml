@@ -52,16 +52,16 @@ header:
     url: /about.html
 
 docs-zh:
-  - title:      Start
+  - title:      开始
     children:
-      - title:  Quick Start
-        url:    /docs/zh/1.1-quick-start
+      - title:  快速开始
+        url:    /docs/zh/quick-start
      
       
-  - title:      Customization
+  - title:      客制化
     children:
-      - title:  Configuration
-        url:    /docs/zh/2.1-configuration
-      - title:  Navigation
-        url:    /docs/zh/2.2-navigation
+      - title:  配置
+        url:    /docs/zh/配置
+      - title:  导航
+        url:    /docs/zh/导航
       
