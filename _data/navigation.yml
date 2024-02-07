@@ -58,11 +58,11 @@ docs-zh:
         url:    /docs/zh/quick-start
       - title:  Structure
         url:    /docs/zh/structure
-      ...
+      
   - title:      Customization
     children:
       - title:  Configuration
         url:    /docs/zh/configuration
       - title:  Navigation
         url:    /docs/zh/navigation
-      ...
+      
