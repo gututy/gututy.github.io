@@ -9,11 +9,32 @@ header:
     url: /about.html
 
 computer_architecture:
-  - title:      开始
+  - title:      计算机体系结构
     children:
-      - title:  快速开始
-        url:    /docs/zh/quick-start
-     
+      - title:  第1章引言
+        url:    /docs/ca/第一章引言
+      - title:  第2章指令系统
+        url:    /docs/ca/第二章指令系统结构
+      - title:  第3章特权指令系统
+        url:    /docs/ca/第三章特权指令系统      
+      - title:  第4章软硬件协同
+        url:    /docs/ca/第四章软硬件协同
+      - title:  第5章计算机组成原理和结构
+        url:    /docs/ca/第五章计算机组成原理和结构
+      - title:  第6章计算机总线接口技术
+        url:    /docs/ca/第六章计算机总线接口技术
+      - title:  第7章计算机系统启动过程分析
+        url:    /docs/ca/
+      - title:  第8章运算器设计
+        url:    /docs/ca/第八章运算器设计
+      - title:  第9章指令流水线
+        url:    /docs/ca/第九章指令流水线
+      - title:  第10章并行编程基础
+        url:    /docs/ca/
+      - title:  第11章多核处理结构
+        url:    /docs/ca/
+      - title:  第12章计算机系统评价和性能分析
+        url:    /docs/ca/
       
   - title:      客制化
     children:
