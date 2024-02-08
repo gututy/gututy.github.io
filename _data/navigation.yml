@@ -12,21 +12,21 @@ computer_architecture:
   - title:      计算机体系结构
     children:
       - title:  第1章引言
-        url:    /docs/ca/第一章引言
+        url:    /docs/ca/1_introduction
       - title:  第2章指令系统
-        url:    /docs/ca/第二章指令系统结构
+        url:    /docs/ca/2_instruction-set
       - title:  第3章特权指令系统
-        url:    /docs/ca/第三章特权指令系统      
+        url:    /docs/ca/3_special-instruction-set      
       - title:  第4章软硬件协同
-        url:    /docs/ca/第四章软硬件协同
+        url:    /docs/ca/4_soft-hardware-together
       - title:  第5章计算机组成原理和结构
-        url:    /docs/ca/第五章计算机组成原理和结构
+        url:    /docs/ca/5_computer-compose
       - title:  第6章计算机总线接口技术
-        url:    /docs/ca/第六章计算机总线接口技术
+        url:    /docs/ca/6_bus
       - title:  第7章计算机系统启动过程分析
         url:    /docs/ca/
       - title:  第8章运算器设计
-        url:    /docs/ca/第八章运算器设计
+        url:    /docs/ca/8_ALU
       - title:  第9章指令流水线
         url:    /docs/ca/第九章指令流水线
       - title:  第10章并行编程基础
