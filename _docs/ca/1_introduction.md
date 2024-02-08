@@ -1,11 +1,13 @@
 ---
 title: 引言
 tags: 计算机体系结构 学习笔记
+permalink: /docs/ca/introduction
 aside:
     toc: ture
 sidebar:
     nav: computer_architecture
 ---
+
 
 # 引言
 ## 计算机体系结构的研究内容

@@ -1,6 +1,7 @@
 ---
 title: 运算器设计
 tags: 计算机体系结构 学习笔记
+permalink: /docs/ca/ALU
 aside:
     toc: ture
 sidebar:

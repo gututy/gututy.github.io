@@ -1,6 +1,7 @@
 ---
 title: 计算机组成原理和结构
 tags: 计算机体系结构 学习笔记
+permalink: /docs/ca/computer-compose
 aside:
     toc: ture
 sidebar:

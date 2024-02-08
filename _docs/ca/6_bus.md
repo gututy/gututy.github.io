@@ -1,6 +1,7 @@
 ---
 title: 计算机总线接口技术
 tags: 计算机体系结构 学习笔记
+permalink: /docs/ca/bus
 aside:
     toc: ture
 sidebar:
