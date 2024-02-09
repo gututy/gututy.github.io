@@ -8,7 +8,7 @@ sidebar:
 <h1>最新笔记</h1>
 
 <ul>
-    {% for blog in site.blogs %}
+    {% for post in site.posts %}
     {% if site.tags == "学习笔记" %}
     <li>
         <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
