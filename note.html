@@ -12,7 +12,7 @@ sidebar:
     {% if site.tags == "学习笔记" %}
     <li>
         <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        {{ blog.excerpt }}
+        {{ post.excerpt }}
     </li>
     {% endif %}
     {% endfor %}
