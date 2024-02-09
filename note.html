@@ -6,3 +6,15 @@ sidebar:
     nav: computer_architecture
 ---
 
+<h1>最新笔记</h1>
+
+<ul>
+    <% for blog in site.blogs %>
+    <% if site.tags == "学习笔记" %>
+    <li>
+        <h2><a href="{{blog.url}}">{{blog.title}}</a></h2>
+        {{blog.excerpt}}
+    </li>
+    <% endif %>
+    <% endfor %>
+</ul>
