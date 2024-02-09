@@ -1,7 +1,6 @@
 ---
 layout: home
 title: 笔记
-# articles: 
 sidebar:
     nav: computer_architecture
 ---
@@ -9,12 +8,12 @@ sidebar:
 <h1>最新笔记</h1>
 
 <ul>
-    <% for blog in site.blogs %>
-    <% if site.tags == "学习笔记" %>
+    {% for blog in site.blogs %}
+    {% if site.tags == "学习笔记" %}
     <li>
-        <h2><a href="{{blog.url}}">{{blog.title}}</a></h2>
-        {{blog.excerpt}}
+        <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+        {{ blog.excerpt }}
     </li>
-    <% endif %>
-    <% endfor %>
+    {% endif %}
+    {% endfor %}
 </ul>
