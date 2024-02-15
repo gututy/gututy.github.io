@@ -401,7 +401,7 @@ sum_vint8:
 
 ![LoongArch系统调用](/assets/ca/第四章图/LoongArch系统调用.png)
 
-```
+~~~
 //hello.S
     .section .rodata
     .align 3
@@ -417,7 +417,9 @@ main:
     li          $a2, 14         # 字符串长度
     syscall     0x0
     jr          $ra             # 返回
-```
+~~~
+{:.language-armasm}
+
 纯汇编的HelloWorld
 - 将字符串写到标准输出
   - a0：文件描述符
