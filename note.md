@@ -3,7 +3,7 @@ layout: articles
 title: 学习笔记
 permalink: /note.html
 articles:
-  data_source: site.docs.ca
+  data_source: site.ca
   show_cover: false
   show_excerpt: true
   show_readmore: true
