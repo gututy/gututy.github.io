@@ -20,9 +20,9 @@ notes:
       - title:  第4章软硬件协同
         url:    /docs/ca/soft-hardware-together
       - title:  第5章计算机组成原理和结构
-        url:    /docs/ca/computer-compose
+        url:    /posts/computer-compose
       - title:  第6章计算机总线接口技术
-        url:    /docs/ca/bus
+        url:    /posts/bus
       - title:  第7章计算机系统启动过程分析
         url:    /docs/ca/
       - title:  第8章运算器设计
