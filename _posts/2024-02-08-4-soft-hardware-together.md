@@ -147,7 +147,7 @@ int fun(double a1, double a2, double a3, double a4, double a5, double a6, double
 }
 ```
 对应的LoongArch汇编代码
-```
+```loongarch
 fun:
     movgr2fr.d $f0, $a0                 //$f0是参数a9，从$a0获得
     movgr2fr.d $f1, $a2                 //$f1是参数a11，从$a2获得
@@ -184,6 +184,7 @@ int simple(int a, int b){
     return((a & 0xff) + b);
 }
 ```
+
 > gcc -O2 -fno-omit-frame-pointer -S 编译后
 
 ```
@@ -197,6 +198,7 @@ simple:
     addi.d      $sp, $sp, 16            // 释放栈帧
     jr          $ra
 ```
+
 > gcc -O2 -S 编译后
 
 ```
@@ -213,6 +215,7 @@ int normal(void){
     return nested(1, 2, 3, 4, 5, 6, 7, 8, 9);
 }
 ```
+
 > gcc -O2 -S
 
 ```
@@ -245,6 +248,7 @@ long dynamic(void){
     return nested((long)p, p[0], 3, 4, 5, 6, 7, 8, 9);
 }
 ```
+
 > gcc -O2 -S
 
 ```
