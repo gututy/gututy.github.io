@@ -1,10 +1,15 @@
 ---
 layout: articles
-sidebar:
-    nav: computer_architecture
+title: 学习笔记
+articles:
+  data_source: site.sample_page
+  show_cover: false
+  show_excerpt: true
+  show_readmore: true
+  show_info: true
 ---
 
-<h1>最新笔记</h1>
+<!-- <h1>最新笔记</h1>
 
 <ul>
     {% for post in site.posts %}
@@ -13,4 +18,4 @@ sidebar:
         {{ post.excerpt }}
     </li>
     {% endfor %}
-</ul>
+</ul> -->

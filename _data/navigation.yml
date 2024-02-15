@@ -2,7 +2,7 @@ header:
   - title: 主页
     url: /index.html
   - title: 笔记
-    url: /note.html
+    url: /note.md
   - title: 归档
     url: /archive.html
   - title: 关于
