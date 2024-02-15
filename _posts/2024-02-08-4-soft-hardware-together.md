@@ -149,9 +149,9 @@ int fun(double a1, double a2, double a3, double a4, double a5, double a6, double
 对应的LoongArch汇编代码
 ```armasm
 fun:
-    movgr2fr.d $f0, $a0                 //$f0是参数a9，从$a0获得
-    movgr2fr.d $f1, $a2                 //$f1是参数a11，从$a2获得
-    fcmp.ceq.d $fcc0, $f1, $f0          //比较a9与a11
+    movgr2fr.d $f0, $a0                 ;$f0是参数a9，从$a0获得
+    movgr2fr.d $f1, $a2                 ;$f1是参数a11，从$a2获得
+    fcmp.ceq.d $fcc0, $f1, $f0          ;比较a9与a11
     bceqz      $fcc0, .L8
     move       $a0, zero
     jr         $ra
@@ -187,21 +187,21 @@ int simple(int a, int b){
 
 > gcc -O2 -fno-omit-frame-pointer -S 编译后
 
-```
+```armasm
 simple:
-    addi.d      $sp, $sp, -16           // 设立一个16字节的栈帧
-    st.d        $fp, $sp, 8             // 在偏移8的位置保存$fp寄存器
-    addi.d      $fp, $sp, 16            // 把$fp指向刚进入函数时的$sp
-    ld.d        $fp, $sp, 8             // 恢复$fp
-    bstrpick.w  $a0, $a0, 7, 0          // 将$a0的0-7位0扩展到32位
+    addi.d      $sp, $sp, -16           ; 设立一个16字节的栈帧
+    st.d        $fp, $sp, 8             ; 在偏移8的位置保存$fp寄存器
+    addi.d      $fp, $sp, 16            ; 把$fp指向刚进入函数时的$sp
+    ld.d        $fp, $sp, 8             ; 恢复$fp
+    bstrpick.w  $a0, $a0, 7, 0          ; 将$a0的0-7位0扩展到32位
     add.w       $a0, $a0, $a1
-    addi.d      $sp, $sp, 16            // 释放栈帧
+    addi.d      $sp, $sp, 16            ; 释放栈帧
     jr          $ra
 ```
 
 > gcc -O2 -S 编译后
 
-```
+```armasm
 simple:
     bstrpick.w  $a0, $a0, 7, 0          
     add.w       $a0, $a0, $a1
@@ -218,23 +218,23 @@ int normal(void){
 
 > gcc -O2 -S
 
-```
+```armasm
 normal:
-    addi.d  $sp,$sp,-32           # 分配栈帧
-    addi.w  $t0,$zero,9           # 0x9
-    stptr.d $t0,$sp,0             # 第9个参数存入栈
-    addi.w  $a7,$zero,8           # 0x8
-    addi.w  $a6,$zero,7           # 0x7
-    addi.w  $a5,$zero,6           # 0x6
-    addi.w  $a4,$zero,5           # 0x5
-    addi.w  $a3,$zero,4           # 0x4
-    addi.w  $a2,$zero,3           # 0x3
-    addi.w  $a1,$zero,2           # 0x2
-    addi.w  $a0,$zero,1           # 0x1
-    st.d    $ra,$sp,24            # 保存ra
+    addi.d  $sp,$sp,-32           ; 分配栈帧
+    addi.w  $t0,$zero,9           ; 0x9
+    stptr.d $t0,$sp,0             ; 第9个参数存入栈
+    addi.w  $a7,$zero,8           ; 0x8
+    addi.w  $a6,$zero,7           ; 0x7
+    addi.w  $a5,$zero,6           ; 0x6
+    addi.w  $a4,$zero,5           ; 0x5
+    addi.w  $a3,$zero,4           ; 0x4
+    addi.w  $a2,$zero,3           ; 0x3
+    addi.w  $a1,$zero,2           ; 0x2
+    addi.w  $a0,$zero,1           ; 0x1
+    st.d    $ra,$sp,24            ; 保存ra
     bl      %plt(nested)
-    ld.d    $ra,$sp,24            # 恢复ra
-    addi.d  $sp,$sp,32            # 释放栈帧
+    ld.d    $ra,$sp,24            ; 恢复ra
+    addi.d  $sp,$sp,32            ; 释放栈帧
     jr  $ra                                  
 ```
 
@@ -251,27 +251,27 @@ long dynamic(void){
 
 > gcc -O2 -S
 
-```
+```armasm
 dynamic:
     addi.d   $sp,$sp,-32
-    st.d     $fp,$sp,16        # 保存fp
-    st.d     $ra,$sp,24        # 保存ra
-    addi.d   $fp,$sp,32        # fp = sp in(fp指向入口时的sp)
-    addi.d   $sp,$sp,-64       # alloca修改sp
-    addi.d   $a0,$sp,16        # [sp+16,sp+80] 为分配的alloca空间      
-    addi.w   $t0,$zero,291     # 0x123
+    st.d     $fp,$sp,16        ; 保存fp
+    st.d     $ra,$sp,24        ; 保存ra
+    addi.d   $fp,$sp,32        ; fp = sp in(fp指向入口时的sp)
+    addi.d   $sp,$sp,-64       ; alloca修改sp
+    addi.d   $a0,$sp,16        ; [sp+16,sp+80] 为分配的alloca空间      
+    addi.w   $t0,$zero,291     ; 0x123
     stptr.d  $t0,$a0,0
-    addi.w   $t0,$zero,9       # 0x9
-    stptr.d  $t0,$sp,0         # sp到sp+16为调子函数参数区
-                               # 
-    addi.w   $a7,$zero,8       # 0x8
-    addi.w   $a7,$zero,7       # 0x7
-    addi.w   $a7,$zero,6       # 0x6
-    addi.w   $a7,$zero,5       # 0x5
-    addi.w   $a7,$zero,4       # 0x4
-    addi.w   $a7,$zero,3       # 0x3
-    addi.w   $a1,$zero,291     # 第二个参数0x123
-    bl       %plt(nested)      # 修改ra
+    addi.w   $t0,$zero,9       ; 0x9
+    stptr.d  $t0,$sp,0         ; sp到sp+16为调子函数参数区
+                                
+    addi.w   $a7,$zero,8       ; 0x8
+    addi.w   $a7,$zero,7       ; 0x7
+    addi.w   $a7,$zero,6       ; 0x6
+    addi.w   $a7,$zero,5       ; 0x5
+    addi.w   $a7,$zero,4       ; 0x4
+    addi.w   $a7,$zero,3       ; 0x3
+    addi.w   $a1,$zero,291     ; 第二个参数0x123
+    bl       %plt(nested)      ; 修改ra
     addi.d   $sp,$fp,-32
     ld.d     $ra,$sp,24
     ld.d     $fp,$sp,16
@@ -296,23 +296,23 @@ int sum_vim8(int v){
 }
 ```
 
-```
+```armasm
 sum_vint8:
     addi.d      $sp, $sp, -48
-    or          $a1, $a0, $zero         # v变成第二个参数
-    or          $a0, $sp, $zero         # 第一个参数为返回值
+    or          $a1, $a0, $zero         ; v变成第二个参数
+    or          $a0, $sp, $zero         ; 第一个参数为返回值
     st.d        $ra, $sp, 40
-    bl          %plt(get_vint8)         # 调用get_vint8
-    or          $t0, $sp, $zero         # $t0指向结构体
+    bl          %plt(get_vint8)         ; 调用get_vint8
+    or          $t0, $sp, $zero         ; $t0指向结构体
     addi.d      $t2, $sp, 32            
-    or          $t1, $zero, $zero       # $t1 = sum = 0
+    or          $t1, $zero, $zero       ; $t1 = sum = 0
     .align      3, 54525952, 4
-.L2:                                    # for循环
-    ldptr.w     $a0, $t0, 0             # 取出r.v[i]
-    addi.d      $t0, $t0, 4             # 下一个v[i]地址
-    add.w       $a0, $a0, $zero         # sum += r.v[i]
+.L2:                                    ; for循环
+    ldptr.w     $a0, $t0, 0             ; 取出r.v[i]
+    addi.d      $t0, $t0, 4             ; 下一个v[i]地址
+    add.w       $a0, $a0, $zero         ; sum += r.v[i]
     or          $t1, $a0, $zero         
-    bne         $t0, $t2, .L2           # 没到末尾就循环
+    bne         $t0, $t2, .L2           ; 没到末尾就循环
     ld.d        $ra, $sp, 40
     addi.d      $sp, $sp, 48
     jr          $ra
@@ -507,7 +507,7 @@ main:
 
 #### 锁的类型
 ##### 自旋锁(selfspin)
-```assembly
+```armasm
     la.local            $a0, lock
 selfspin:
     ll.w                $t0, $a0, 0
