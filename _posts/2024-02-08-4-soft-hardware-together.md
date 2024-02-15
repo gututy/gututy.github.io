@@ -5,7 +5,7 @@ permalink: /docs/ca/soft-hardware-together
 aside:
     toc: ture
 sidebar:
-    nav: computer_architecture
+    nav: notes
 ---
 
 # 软硬件协同

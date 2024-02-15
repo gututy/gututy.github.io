@@ -5,7 +5,7 @@ permalink: /docs/ca/computer-compose
 aside:
     toc: ture
 sidebar:
-    nav: computer_architecture
+    nav: notes
 ---
 
 # 计算机组成原理和结构

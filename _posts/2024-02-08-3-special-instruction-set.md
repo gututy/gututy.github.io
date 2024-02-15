@@ -5,7 +5,7 @@ permalink: /docs/ca/special-instruction-set
 aside:
     toc: ture
 sidebar:
-    nav: computer_architecture
+    nav: notes
 ---
 
 # 特权指令系统

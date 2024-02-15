@@ -5,9 +5,9 @@ permalink: /docs/ca/introduction
 aside:
     toc: ture
 sidebar:
-    nav: computer_architecture
+    nav: notes
 ---
-第一章：引言
+>第一章：引言
 主要介绍计算机体系结构的研究内容；衡量计算机的指标；计算机体系结构的发展趋势；计算机体系结构的设计原则
 <!--more-->
 

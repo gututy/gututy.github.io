@@ -8,7 +8,7 @@ header:
   - title: 关于
     url: /about.html
 
-computer_architecture:
+notes:
   - title:      计算机体系结构
     children:
       - title:  第1章引言

@@ -5,7 +5,7 @@ permalink: /docs/ca/instruction-set
 aside:
     toc: ture
 sidebar:
-    nav: computer_architecture
+    nav: notes
 ---
 
 # 指令系统结构
