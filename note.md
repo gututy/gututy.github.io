@@ -2,7 +2,7 @@
 layout: articles
 title: 学习笔记
 articles:
-  data_source: site.post
+  data_source: site.posts
   show_cover: false
   show_excerpt: true
   show_readmore: true
