@@ -1,35 +1,15 @@
 ---
 layout: article
-titles:
-  # @start locale config
-  en      : &EN       About
-  en-GB   : *EN
-  en-US   : *EN
-  en-CA   : *EN
-  en-AU   : *EN
-  zh-Hans : &ZH_HANS  关于
-  zh      : *ZH_HANS
-  zh-CN   : *ZH_HANS
-  zh-SG   : *ZH_HANS
-  zh-Hant : &ZH_HANT  關於
-  zh-TW   : *ZH_HANT
-  zh-HK   : *ZH_HANT
-  ko      : &KO       소개
-  ko-KR   : *KO
-  fr      : &FR       À propos
-  fr-BE   : *FR
-  fr-CA   : *FR
-  fr-CH   : *FR
-  fr-FR   : *FR
-  fr-LU   : *FR
-  # @end locale config
+titles: 关于
 key: page-about
 aside:
   toc: ture
 ---
 
-# 关于我
+中国科学院大学本科在读
 
 --------
 
 # 更新日志
+- 2024.02.08- 一直在用自己的想法修改配置并把之前写的笔记添加上
+- 2024.02.08  正式通过fork主题仓库建站

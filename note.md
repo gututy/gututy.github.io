@@ -8,6 +8,8 @@ articles:
   show_excerpt: true
   show_readmore: true
   show_info: true
+sidebar:
+    nav: notes
 ---
 
 <!-- <h1>最新笔记</h1>
