@@ -24,7 +24,7 @@ notes:
       - title:  第6章计算机总线接口技术
         url:    /notes/ca/bus
       - title:  第7章计算机系统启动过程分析
-        url:    /notes/ca/computer-begin
+        url:    /notes/ca/computer-start
       - title:  第8章运算器设计
         url:    /notes/ca/ALU
       - title:  第9章指令流水线
