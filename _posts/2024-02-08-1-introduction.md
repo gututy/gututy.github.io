@@ -1,7 +1,7 @@
 ---
 title: 引言
 tags: 计算机体系结构 学习笔记
-permalink: /docs/ca/introduction
+permalink: /notes/ca/introduction
 aside:
     toc: ture
 sidebar:

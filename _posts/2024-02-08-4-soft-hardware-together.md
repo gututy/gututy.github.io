@@ -1,7 +1,7 @@
 ---
 title: 软硬件协同
 tags: 计算机体系结构 学习笔记
-permalink: /docs/ca/soft-hardware-together
+permalink: /notes/ca/soft-hardware-together
 aside:
     toc: ture
 sidebar:

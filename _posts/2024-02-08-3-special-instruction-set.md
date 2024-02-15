@@ -1,7 +1,7 @@
 ---
 title: 特权指令系统
 tags: 计算机体系结构 学习笔记
-permalink: /docs/ca/special-instruction-set
+permalink: /notes/ca/special-instruction-set
 aside:
     toc: ture
 sidebar:

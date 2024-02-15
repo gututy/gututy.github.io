@@ -12,29 +12,29 @@ notes:
   - title:      计算机体系结构
     children:
       - title:  第1章引言
-        url:    /docs/ca/introduction
+        url:    /notes/ca/introduction
       - title:  第2章指令系统
-        url:    /docs/ca/instruction-set
+        url:    /notes/ca/instruction-set
       - title:  第3章特权指令系统
-        url:    /docs/ca/special-instruction-set      
+        url:    /notes/ca/special-instruction-set      
       - title:  第4章软硬件协同
-        url:    /docs/ca/soft-hardware-together
+        url:    /notes/ca/soft-hardware-together
       - title:  第5章计算机组成原理和结构
         url:    /posts/computer-compose
       - title:  第6章计算机总线接口技术
-        url:    /posts/bus
+        url:    /notes/ca/bus
       - title:  第7章计算机系统启动过程分析
-        url:    /docs/ca/
+        url:    /notes/ca/
       - title:  第8章运算器设计
-        url:    /docs/ca/ALU
+        url:    /notes/ca/ALU
       - title:  第9章指令流水线
-        url:    /docs/ca/第九章指令流水线
+        url:    /notes/ca/第九章指令流水线
       - title:  第10章并行编程基础
-        url:    /docs/ca/
+        url:    /notes/ca/
       - title:  第11章多核处理结构
-        url:    /docs/ca/
+        url:    /notes/ca/
       - title:  第12章计算机系统评价和性能分析
-        url:    /docs/ca/
+        url:    /notes/ca/
       
   - title:      客制化
     children:

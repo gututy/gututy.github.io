@@ -1,7 +1,7 @@
 ---
 title: 指令系统结构
 tags: 计算机体系结构 学习笔记
-permalink: /docs/ca/instruction-set
+permalink: /notes/ca/instruction-set
 aside:
     toc: ture
 sidebar:

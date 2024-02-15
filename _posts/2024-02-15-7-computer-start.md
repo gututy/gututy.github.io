@@ -1,6 +1,7 @@
 ---
 title: 计算机系统启动过程分析
 tags: 计算机体系结构 学习笔记
+permalink: /notes/ca/computer-start
 aside:
     toc: ture
 sidebar:
@@ -22,6 +23,7 @@ sidebar:
   - 按照从核内到核外，从片内到片外的次序进行
 ```
 
-```asm
+```
 li a0,a1
 ```
+{:.language-loongarchasm}
