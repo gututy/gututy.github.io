@@ -1,6 +1,7 @@
 ---
 layout: articles
 title: 学习笔记
+permalink: /note.html
 articles:
   data_source: site.posts
   show_cover: false
