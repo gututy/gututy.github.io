@@ -200,3 +200,103 @@ bne     a3, a2, 1b
 jirl    zero, ra, 0
 END(CPU_TLBClear)
 ```
+- TLB表项
+  - 全相联
+  - 32-64项
+  - **关注E这一项**
+
+![TLB表项](/assets/ca/第七章图/TLB表项(7).png)
+
+- TLB控制寄存器
+  - **关注NE这一项**
+
+![TLB控制寄存器](/assets/ca/第七章图/TLB控制寄存器.png)
+![TLB控制寄存器2](/assets/ca/第七章图/TLB控制寄存器2.png)
+
+## Cache初始化
+- 复位后BIOS刚开始启动时，处理器从非缓存空间开始执行
+  - **上千拍**完成一条指令的取指和执行
+  - Cache初始化后，跳转到Cache空间执行，全速流水
+  - 尽早完成Cache初始化，使用Cache地址执行能够大大提升启动速度
+- 从Cache来看，逻辑地址空间分为非缓存和缓存
+  - LoongArch使用窗口进行映射，一般情况下按以下的设置方式
+  - 0x90000000_00000000 - 0x9FFFFFFF_FFFFFFFF ：Cache访问方式
+  - 0x80000000_00000000 - 0x8FFFFFFF_FFFFFFFF ：Uncache访问方式
+  - 上述两个通过窗口来映射的空间，虽然访问的方式不同，但后面所映射的物理地址是相同的。区别在于用Cache方式访问时，如果在Cache中失效会自动到实际的物理位置取回数据；而用Uncache方式，则不会在Cache中查找。Uncache一般用于IO访问
+  - 为什么用一个Cache地址进行写操作后，用同样的Uncache地址无法得到写入的值？
+### 一级Cache初始化代码
+```nasm
+LEAF(godson2_cache_init)
+li        a2, (1<<14)       ;64KB/4路，为Index的实际数量
+li        a0, 0x0           ;a0表示当前的Index
+1:
+CACOP     0x0, a0, 0x0      ;对4路Cache分别进行写TAG操作
+CACOP     0x0, a0, 0x0
+CACOP     0x0, a0, 0x0
+CACOP     0x0, a0, 0x0
+addi.d    a0, a0, 0x40      ;每个Cache行大小为64字节
+bne       a0, a2, 1b
+jirl      ra
+END(godson2_cache_init)
+```
+- 片上Cache容量越来越大，使得初始化事件越来越长
+- 使用硬件资源在复位时对TLB、Cache等结构的初始化
+  - 大幅减少系统启动的时间
+  - 龙芯3A2000以后的处理器都支持硬件初始化Cache
+
+### Cache指令及寄存器
+- Cache在功能上对用户程序是透明的，但对OS是可见的
+  - 以前硬件一般不对Cache做初始化，刚上电时Cache内容是乱的
+  - 需要软件把Cache初始化成任何访问都不命中
+- LoongArch的Cache指令，只能在核心态下使用
+  - LoongArche的Cache指令通过OPCODE来表示具体的操作
+  - 包括初始化和维护一致性的操作
+
+### Cache算法配置
+- 两位决定Cache算法
+  - 0-Uncached、1-Cached、2-Uncache ACC
+  - 对于窗口映射方式，由窗口配置寄存器的MAT域决定
+  - 其他部分由TLB表项决定
+
+![Cache算法1](/assets/ca/第七章图/Cache算法1.png)
+![Cache算法2](/assets/ca/第七章图/Cache算法2.png)
+
+## 处理器核初始化后
+CPU内部一片光亮，除了串口和BIOS接口，多数“门窗”都没开
+
+# 总线接口初始化
+## 内存接口初始化
+- 到此为止，BIOS从Flash读程序，写IO或控制寄存器
+  - 相比Flash设备，内存接口的访问性能大大提升
+- 内存接口的初始化与核内部件的初始化的差别
+  - Cache/TLB的初始化主要是将内容设置为无效
+  - 内存接口的初始化针对接口控制
+- 内存接口初始化内容
+  - 通过内存的SPD(并非必需)获取内存大小，类型，频率，延迟等各种信息
+  - 根据所得到的内存信息对控制器和内存进行设置
+  - 可能还有对于时序配合的信号训练
+  - 对内容并不关心(ECC内存除外，不初始化内容会导致ECC错)
+
+### 内存控制器配置代码
+- 将预先定义好的值写入内存控制器的相应寄存器中
+- 内存控制器将自动对内存进行初始化配置
+  - 主要设置延迟、匹配阻抗等
+- 初始设置后，会再对内存信号进行训练
+
+```nasm
+ddr2_config:
+  add.d     a2, a2, s0          ;a2为调用该程序时传入的参数，与s0之和用于表示初始化参数在FLASH中的基地址
+  dli       t1, DDR_PARAM_NUM   ;t1用于表示内存参数的个数
+  addi.d    v0, t8, 0x0         ;t8用于表示内存参数的个数
+1:
+  ld.d      a1, 0x0(a2)         ;初始化的过程就是从FLASH中取数再写入内存控制器中的寄存器的过程
+  st.d      a1, 0x0(v0)         
+  addi.d    t1, t1, -1
+  addi.d    a2, a2, 0x8
+  addi.d    v0, v0, 0x8
+  bnez      t1, 1b
+```
+
+## IO总线初始化
+- 根据不同IO总线的需求进行针对性的初始化
+- 通过初始化
