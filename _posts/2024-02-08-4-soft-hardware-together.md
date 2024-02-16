@@ -147,7 +147,7 @@ int fun(double a1, double a2, double a3, double a4, double a5, double a6, double
 }
 ```
 对应的LoongArch汇编代码
-```armasm
+```nasm
 fun:
     movgr2fr.d $f0, $a0                 ;$f0是参数a9，从$a0获得
     movgr2fr.d $f1, $a2                 ;$f1是参数a11，从$a2获得
@@ -188,7 +188,7 @@ int simple(int a, int b){
 
 > gcc -O2 -fno-omit-frame-pointer -S 编译后
 
-```armasm
+```nasm
 simple:
     addi.d      $sp, $sp, -16           ; 设立一个16字节的栈帧
     st.d        $fp, $sp, 8             ; 在偏移8的位置保存$fp寄存器
@@ -202,7 +202,7 @@ simple:
 
 > gcc -O2 -S 编译后
 
-```armasm
+```nasm
 simple:
     bstrpick.w  $a0, $a0, 7, 0          
     add.w       $a0, $a0, $a1
@@ -220,7 +220,7 @@ int normal(void){
 
 > gcc -O2 -S
 
-```armasm
+```nasm
 normal:
     addi.d  $sp,$sp,-32           ; 分配栈帧
     addi.w  $t0,$zero,9           ; 0x9
@@ -254,7 +254,7 @@ long dynamic(void){
 
 > gcc -O2 -S
 
-```armasm
+```nasm
 dynamic:
     addi.d   $sp,$sp,-32
     st.d     $fp,$sp,16        ; 保存fp
@@ -299,7 +299,7 @@ int sum_vim8(int v){
 }
 ```
 
-```armasm
+```nasm
 sum_vint8:
     addi.d      $sp, $sp, -48
     or          $a1, $a0, $zero         ; v变成第二个参数
@@ -404,7 +404,7 @@ sum_vint8:
 
 ![LoongArch系统调用](/assets/ca/第四章图/LoongArch系统调用.png)
 
-~~~
+~~~nasm
 //hello.S
     .section .rodata
     .align 3
@@ -414,14 +414,14 @@ sum_vint8:
     .align 3
     .global main
 main:
-    li          $a7, 64         # write的系统调用号64
-    li          $a0, 1          # fd == 1 是stdout的文件描述符号
-    la.local    $a1, .hello     # 字符串地址
-    li          $a2, 14         # 字符串长度
+    li          $a7, 64         ; write的系统调用号64
+    li          $a0, 1          ; fd == 1 是stdout的文件描述符号
+    la.local    $a1, .hello     ; 字符串地址
+    li          $a2, 14         ; 字符串长度
     syscall     0x0
-    jr          $ra             # 返回
+    jr          $ra             ; 返回
 ~~~
-{:.language-armasm}
+
 
 纯汇编的HelloWorld
 - 将字符串写到标准输出
@@ -510,7 +510,7 @@ main:
 
 #### 锁的类型
 ##### 自旋锁(selfspin)
-```armasm
+```nasm
     la.local            $a0, lock
 selfspin:
     ll.w                $t0, $a0, 0
