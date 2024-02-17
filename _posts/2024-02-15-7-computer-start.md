@@ -421,7 +421,47 @@ ddr2_config:
   - 主核：将从核需要运行的程序指针、参数写入信箱寄存器，等待从核被唤醒
   - 从核：轮询信箱寄存器，发现非零值则跳转执行，执行完相关的程序后，通过信箱寄存器通知主核
   - 主核：收到信箱寄存器通知后，继续下一个核的唤醒或其他操作
+
+<details>
+<summary>唤醒代码</summary>
+<div markdown="1">
+
+```nasm
+slave_main:
+  dli     t2, NODE0_CORE0_BUF0          ;NODE0_CORE0_BUF0为0号核的信箱寄存器地址，其他核的信箱
+  dli     t3, BOOTCORE_ID               ;寄存器地址与之相关，在此根据主核的核号，确定主核信箱的
+  sll.d   t3, 8                         ;实际地址
+  or      t2, t2, t3
+
+wait_scache_allover:
+  ld.w    t4, t2, FN_OFF                ;等待主核写入初始化完成标志
+  dli     t5, SYSTEM_INIT_OK
+  bne     t4, t5, wait_scache_allover   
+
+  bl      clear_mailbox                 ;对每个核各自的信箱寄存器进行初始化
+
+waitforinit:
+  li      a0, 0x1000
+idle1000:
+  addiu   a0, -1
+  bnez    a0, idle1000
+
+  ld.w    t2, t1, FN_OFF                ;t1为各个核的信箱寄存器地址，轮询等待
+  beqz    t2, waitforinit
+
+  ld.d    t2, t1, FN_OFF                ;通过读取低32位确定是否写入，再读取64位得到完整地址
+  ld.d    sp, SP_OFF(t1)                ;从信箱寄存器中的其他地方取回相关启动参数
+  ld.d    gp, GP_OFF(t1)
+  ld.d    a1, A1_OFF(t1)
+
+  move    ra, t2                        ;转至唤醒地址，开始执行
+  jirl    zero, ra, 0x0
+```
+</div>
+</details>
+
 --------------
+
 - BIOS完成上述工作后
   - 从硬盘把内核取到内存(DMA或PIO)，并跳转到内核地址，由内核负责后续计算机控制
     - BIOS要把基本的硬件参数通过BIOS与内核接口(如ACPI接口)传递给内核
